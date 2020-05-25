@@ -1,0 +1,210 @@
+html,
+body {
+    height: 100%;
+    background-color: #ededed;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    /*padding: 70px 15px 20px;*/
+    padding: 60px 30px 10px;
+    //background-color: white;
+    min-height: 700px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+
+
+
+h1{
+  font-family: 'Font_Helvetica_Neue_2';
+  text-align: center;
+}
+
+h4{
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+.wrapper {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   text-align: center;
+}/*
+.wrapper .form-group{
+  padding:0 30px;
+  min-width: 40px;
+}*/
+
+
+.input-group{
+  //margin: 0 30px;
+}
+.header{
+  border-bottom: 1px solid #6a6a6a70;
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border-radius:18px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	/*padding:5px 24px;*/
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+  width: 100px;
+  height: 35px;
+  display: table;
+  margin: 0 auto;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+#new{
+  display: none;
+  margin-bottom: 200px;
+}
+
+.site-login, .site-signup{
+  align:center;
+  display: table;
+  margin: 0 auto;
+  padding: 0 40px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-top: 100px;
+}
+.site-login button, .site-signup button{
+  padding-left: 20px;
+  padding-right: 20px;
+  display: table;
+  margin: 0 auto;
+}
+.site-login form, .site-signup form{
+  margin-top: 20px;
+}
+.vend {
+    display: inline-block;
+    vertical-align:bottom;
+    float: none;
+    display: inline-flex;
+}

@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Font_Helvetica_Bold_1';
+    src: url('../fonts/Helvetica-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Font_Helvetica_Neue_2';
+    src: url('../fonts/Helvetica-Neue.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: normal;
+}
+
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/Lato-Light.ttf') format('truetype');
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Lato-Regular.ttf') format('truetype');
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/Lato-Bold.ttf') format('truetype');
+}
