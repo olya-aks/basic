@@ -59,7 +59,27 @@ class P0320_VIGROB_  extends ActiveRecord
       'OBPV','OBMPV','OBZR','OBMZR','OBRF','OBMRF','OBPR','OBMPR','OBCM','OBMCM','OBCS','OBMCS'],'number', 'min'=> 0,
        'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
+       [['VIGVS'], 'validateV'],
+       [['OBVS'], 'validateOO'],
+       [['OBMVS'], 'validateOM'],
+
     ];
+  }
+
+  public function validateV(){
+    if ($this->VIGVS!=($this->VIGKR+$this->VIGPL+$this->VIGPV+$this->VIGZR+$this->VIGRF+$this->VIGPR+$this->VIGCM+$this->VIGCS)){
+      $this->addError('VIGVS','Поле ВЫГРУЗКА ВСЕГО не соответствует сумме полей');
+    }
+  }
+  public function validateOO(){
+    if ($this->OBVS!=($this->OBKR+$this->OBPL+$this->OBPV+$this->OBZR+$this->OBRF+$this->OBPR+$this->OBCM+$this->OBCS)){
+      $this->addError('OBVS','Поле ОБОРОТ ОБЩИЙ ВСЕГО не соответствует сумме полей');
+    }
+  }
+  public function validateOM(){
+    if ($this->OBMVS!=($this->OBMKR+$this->OBMPL+$this->OBMPV+$this->OBMZR+$this->OBMRF+$this->OBMPR+$this->OBMCM+$this->OBMCS)){
+      $this->addError('OBMVS','Поле ОБОРОТ МЕСТНЫЙ ВСЕГО не соответствует сумме полей');
+    }
   }
     /**
      * @return string название таблицы, сопоставленной с этим ActiveRecord-классом.

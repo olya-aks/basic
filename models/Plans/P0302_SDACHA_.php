@@ -10,7 +10,7 @@ class P0302_SDACHA_  extends ActiveRecord
         'NOD' => 'НОД',
         'DATE' => 'РАСЧЕТНАЯ ДАТА',
         'SDVS' => 'СДАЧА ВСЕГО',
-        'SDGRU' => 'СДАЧА ГРУЖЕНЫХ',
+        'SDGRU' => 'СДАЧА ГРУЖЕНЫХ ВСЕГО',
         'SDGRKR' => 'СДАЧА ГРУЖЕНЫХ КРЫТЫХ',
         'SDGRPL' => 'СДАЧА ГРУЖЕНЫХ ПЛАТФОРМ',
         'SDGRPV' => 'СДАЧА ГРУЖЕНЫХ ПОЛУВАГОНОВ',
@@ -19,7 +19,7 @@ class P0302_SDACHA_  extends ActiveRecord
         'SDGRPR' => 'СДАЧА ГРУЖЕНЫХ ПРОЧИХ',
         'SDGRCM' => 'СДАЧА ГРУЖЕНЫХ ЦЕМЕНТОВОЗОВ',
         'SDGRCS' => 'СДАЧА ГРУЖЕНЫХ ЦИСТЕРН',
-        'SDPOR' => 'СДАЧА ПОРОЖНИХ',
+        'SDPOR' => 'СДАЧА ПОРОЖНИХ ВСЕГО',
         'SDPRKR' => 'СДАЧА ПОРОЖНИХ КРЫТЫХ',
         'SDPRPL' => 'СДАЧА ПОРОЖНИХ ПЛАТФОРМ',
         'SDPRPV' => 'СДАЧА ПОРОЖНИХ ПОЛУВАГОНОВ',
@@ -48,7 +48,25 @@ class P0302_SDACHA_  extends ActiveRecord
       [['NOD','SDVS','SDGRU','SDGRKR','SDGRPL','SDGRPV','SDGRZR','SDGRPF','SDGRPR','SDGRCM','SDGRCS','SDPOR','SDPRKR','SDPRPL',
       'SDPRPV','SDPRZR','SDPRRF','SDPRPR','SDPRCM','SDPRCS'],'number', 'min'=> 0, 'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
+      [['SDVS'], 'validateV'],
+      [['SDGRU'], 'validateGV'],
+      [['SDPOR'], 'validatePV'],
     ];
+  }
+  public function validateGV(){
+    if ($this->SDGRU!=($this->SDGRKR+$this->SDGRPL+$this->SDGRPV+$this->SDGRZR+$this->SDGRPF+$this->SDGRPR+$this->SDGRCM+$this->SDGRCS)){
+      $this->addError('SDGRU','Поле СДАЧА ГРУЖЕНЫХ ВСЕГО не соответствует сумме полей');
+    }
+  }
+  public function validatePV(){
+    if ($this->SDPOR!=($this->SDPRKR+$this->SDPRPL+$this->SDPRPV+$this->SDPRZR+$this->SDPRRF+$this->SDPRPR+$this->SDPRCM+$this->SDPRCS)){
+      $this->addError('SDPOR','Поле СДАЧА ПОРОЖНИХ ВСЕГО не соответствует сумме полей');
+    }
+  }
+  public function validateV(){
+    if ($this->SDVS!=($this->SDGRU+$this->SDPOR)){
+      $this->addError('SDVS','Поле СДАЧА ВСЕГО не соответствует сумме полей');
+    }
   }
     /**
      * @return string название таблицы, сопоставленной с этим ActiveRecord-классом.
