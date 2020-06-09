@@ -15,8 +15,8 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
     <div id="get" class="table100-body js-pscroll">
       <table>
         <tr class="row100 head">
-          <th rowspan="2">Станция</th>
           <th rowspan="2">НОД</th>
+          <th rowspan="2">Станция</th>
           <th rowspan="2">Расчетная дата</th>
           <th rowspan="2">Раб/парк псего</th>
           <th rowspan="2">Парк порожних</th>
@@ -31,8 +31,8 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
         </tr>
       <?php foreach ($model->data as $data): ?>
         <tr class="row100 body">
-          <td><?=$data['ESR'] ?></td>
           <td><?=$data['NOD'] ?></td>
+          <td><?=$data['ESR'] ?></td>
           <td><?=$data['DATE'] ?></td>
           <td><?=$data['PRKRAB'] ?></td>
           <td><?=$data['PRKPOR'] ?></td>
@@ -56,8 +56,8 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
     <div id="add" class="table100-body js-pscroll">
       <table>
         <tr class="row100 head">
-          <th rowspan="2">Станция</th>
           <th rowspan="2">НОД</th>
+          <th rowspan="2">Станция</th>
           <th rowspan="2">Расчетная дата</th>
           <th rowspan="2">Раб/парк псего</th>
           <th rowspan="2">Парк порожних</th>
@@ -71,9 +71,34 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
           <th>общий</th>
         </tr>
         <tr class="row100 body">
-          <td><input type="text" name = "ESR" class="form-control"/></td>
-          <td><input type="text" name = "NOD" class="form-control"/></td>
-          <!--td><input type="text" name = "DATE" class="form-control"/></td-->
+          <td>
+            <?= Html::dropDownList('NOD', null,[1=>'1',2=>'2',3=>'3',4=>'4',5=>'5', 6=>'6', 7=>'7'],
+                   ['id'=> 'NOD',
+                   'class' => 'form-control',
+                     'prompt'=>'',
+                    'onchange'=>'
+                    var nod = $("#NOD").val();
+                    document.getElementById("new").reset();
+                    $("#NOD").val(nod);
+                    $.post( "plan/station?id='.'"+$("option:selected", "#NOD").text(), function( data ) {
+                      $( "#ESR" ).html( data );
+                    });',
+              ]); ?>
+          </td>
+          <td>
+            <?= Html::dropDownList('ESR', null,[],
+            ['id'=>'ESR',
+            'class' => 'form-control',
+            'prompt'=>'',
+           'onchange'=>'
+           var nod = $("#NOD").val();
+           var esr = $("#ESR").val();
+           document.getElementById("new").reset();
+           $("#NOD").val(nod);
+           $("#ESR").val(esr);
+           ',
+            ])?>
+          </td>
           <td><input type="hidden" name = "DATE" />
             <?php date_default_timezone_set('Europe/Moscow'); echo(date('Y-m-d')); ?></td>
           <td><input type="text" name = "PRKRAB" class="form-control"/></td>

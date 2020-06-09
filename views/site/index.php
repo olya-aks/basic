@@ -9,7 +9,6 @@ use yii\helpers\Html;
   <div class="header">
   <h1>Передача плановых показателей</h1>
   <div class="body-content">
-
 <div class="row align-items-end">
     <div class="departments-form">
 

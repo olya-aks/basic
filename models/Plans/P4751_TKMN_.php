@@ -8,7 +8,7 @@ class P4751_TKMN_  extends ActiveRecord
   public function attributeLabels() {
       return [
         'DATE' => 'РАСЧЕТНАЯ ДАТА',
-        'REG' => 'РЕГИОН',
+        'NOD' => 'РЕГИОН',
         'TKMN' => 'Т-КМ НЕТТО',
         'GRUZOOBM' => 'МЕСЯЦ: ГРУЗООБОРОТ С УЧЕТОМ СОБСТВЕННЫХ ВАГОНОВ В ПОРОЖНЕМ СОСТОЯНИИ',
         'TARIFM' => 'МЕСЯЦ: В Т. Ч. ТАРИФНЫЙ ГРУЗООБОРОТ',
@@ -29,16 +29,16 @@ class P4751_TKMN_  extends ActiveRecord
   {
     return [
       //[['ESR', 'NOD','PLNVAG','PLNTON'], 'trim'],
-      [['REG','TKMN','GRUZOOBM','TARIFM','GRSBPM','GRUZOOBK','TARIFK','GRSBPK','GRUZOOBG','TARIFG','GRSBPG'],
+      [['NOD','TKMN','GRUZOOBM','TARIFM','GRSBPM','GRUZOOBK','TARIFK','GRSBPK','GRUZOOBG','TARIFG','GRSBPG'],
       'required', 'message' => 'Поле {attribute} обязательно для заполнения'],
 
-      ['REG', 'string', 'max' => 2, 'min' => 1, 'tooLong' => 'Поле {attribute} должно иметь не более 2-х знаков'],
-      [['REG','TKMN'], 'integer', 'message' => 'Поле {attribute} должно быть целочисленным'],
+      ['NOD', 'string', 'max' => 2, 'min' => 1, 'tooLong' => 'Поле {attribute} должно иметь не более 2-х знаков'],
+      [['NOD','TKMN'], 'integer', 'message' => 'Поле {attribute} должно быть целочисленным'],
 
       [['GRUZOOBM','TARIFM','GRSBPM','GRUZOOBK','TARIFK','GRSBPK','GRUZOOBG','TARIFG','GRSBPG'],
        'double', 'message' => 'Поле {attribute} должно быть числовым'],
 
-       [['REG','TKMN','GRUZOOBM','TARIFM','GRSBPM','GRUZOOBK','TARIFK','GRSBPK','GRUZOOBG','TARIFG','GRSBPG'],
+       [['NOD','TKMN','GRUZOOBM','TARIFM','GRSBPM','GRUZOOBK','TARIFK','GRSBPK','GRUZOOBG','TARIFG','GRSBPG'],
        'number', 'min'=> 0, 'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
 

@@ -49,8 +49,19 @@ class P0303_PRMEST  extends ActiveRecord
       [['NOD','PRIVS','POGVS','PRIKR','POGKR','PRIPL','POGPL','PRIPV','POGPV','PRIZR','POGZR',
       'PRIRF','POGRF','PRIPR','POGPR','PRICM','POGCM','PRICS','POGCS'],'number', 'min'=> 0, 'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
-
+      [['PRIVS'], 'validatepriem'],
+      [['POGVS'], 'validatepogruz'],
     ];
+  }
+  public function validatepriem(){
+    if ($this->PRIVS!=($this->PRIKR+$this->PRIPL+$this->PRIPV+$this->PRIZR+$this->PRIRF+$this->PRIPR+$this->PRICM+$this->PRICS)){
+      $this->addError('PRIVS','Поле ПРИЕМ ВСЕГО не соответствует сумме полей');
+    }
+  }
+  public function validatepogruz(){
+    if ($this->POGVS!=($this->POGKR+$this->POGPL+$this->POGPV+$this->POGZR+$this->POGRF+$this->POGPR+$this->POGCM+$this->POGCS)){
+      $this->addError('POGVS','Поле ПОГРУЗКА ВСЕГО не соответствует сумме полей');
+    }
   }
     /**
      * @return string название таблицы, сопоставленной с этим ActiveRecord-классом.

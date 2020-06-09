@@ -26,7 +26,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class=wrap style="background-image:url('img/background.jpg');background-repeat: no-repeat;background-attachment: fixed">
+<div class=wrap style="background-image:url('img/background.jpg');background-repeat: no-repeat;background-attachment: fixed; background-size: 100% 100%;">
 <?php
     NavBar::begin([
         'brandLabel' => 'МИВЦ',
@@ -39,7 +39,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'ГЛАВНАЯ', 'url' => Yii::$app->homeUrl],
+            //['label' => 'ГЛАВНАЯ', 'url' => Yii::$app->homeUrl],
             //['label' => 'РЕГИСТРАЦИЯ', 'url' => ['/site/signup'],'visible'=>Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 ['label' => 'ВХОД', 'url' => ['/site/index']]

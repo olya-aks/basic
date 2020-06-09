@@ -16,7 +16,7 @@ class Maket  extends ActiveRecord
         else {      $sql = $sql->where(['nod'=>$nod]);  }
       }
       else{ if ($date){ $sql = $sql->where(['date'=>$date]);  } }
-      $sql=$sql->orderBy(['DATE'=> SORT_DESC])->all();
+      $sql=$sql->orderBy(['DATE'=> SORT_DESC, 'NOD' => SORT_ASC])->all();
       if (isset($sql)){
         $this->data =$sql;
       }

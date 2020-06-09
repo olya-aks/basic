@@ -38,7 +38,7 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
       <?php foreach ($model->data as $data): ?>
         <tr class="row100 body">
           <td><?=$data['DATE']?></td>
-          <td><?=$data['REG']?></td>
+          <td><?=$data['NOD']?></td>
           <td><?=$data['TKMN']?></td>
           <td><?=$data['GRUZOOBM']?></td>
           <td><?=$data['TARIFM']?></td>
@@ -84,10 +84,20 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
           <th>Грузооборот собственных вагонов в порожнем состоянии, квартал</th>
         </tr>
         <tr class="row100 body">
-          <!--td><input type="text" name = "DATE" class="form-control"/></td-->
+
           <td><input type="hidden" name = "DATE" /><?php date_default_timezone_set('Europe/Moscow');
             echo(date('Y-m-d')); ?></td>
-          <td><input  type="text" name = "REG" class="form-control"/></td>
+            <td>
+              <?= Html::dropDownList('NOD', null,[1=>'1',2=>'2',3=>'3',4=>'4',5=>'5', 6=>'6', 7=>'7',16=>'16'],
+                     ['id'=> 'NOD',
+                     'class' => 'form-control',
+                       'prompt'=>'',
+                      'onchange'=>'
+                      var nod = $("#NOD").val();
+                      document.getElementById("new").reset();
+                      $("#NOD").val(nod);',
+                ]); ?>
+            </td>
           <td><input type="text" name = "TKMN" class="form-control"/></td>
           <td><input type="text" name = "GRUZOOBM" class="form-control"/></td>
           <td><input type="text" name = "TARIFM" class="form-control"/></td>

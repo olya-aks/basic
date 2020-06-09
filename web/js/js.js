@@ -24,7 +24,6 @@ $(document).ready(function(){
     var maket=$( "#maket" ).val();
     var nod=$('#region').val();
     var date=$('#datetimepicker2').datepicker('getFormattedDate');
-    var actionName = 'plan/send_'.concat(maket.toLowerCase());
         $.ajax({
           url: 'plan/show_tables',
           data: {maket:maket,nod:nod,date:date},
@@ -32,8 +31,6 @@ $(document).ready(function(){
           cache:false,
           success: function (data) {
             if(!data) data = 'Информация отсутствует';
-            //document.getElementById("get").innerHTML=data;
-            //$('#select').fadeIn().html(data);
             $('#select').html(data);
             $('.js-pscroll').each(function(){
               var ps = new PerfectScrollbar(this);
@@ -50,17 +47,14 @@ $(document).ready(function(){
               });
               $("#datetimepicker2").datepicker("update", "");
             });
-
-
-
               $('#new').on('submit', function(e){
               var form=$(this).serialize();
               e.preventDefault();
                   $.ajax({
-                    url: actionName,
+                    url: 'plan/send',
                     type: 'post',
                     cache:false,
-                    data: form,
+                    data: form + '&maket=' + maket,
                     success:function(data){
                       var get = $(data).find('#get').html();
                       var err = $(data).find('#errors').html();
@@ -95,12 +89,5 @@ $(document).ready(function(){
             alert(request.responseText);
           }
         });
-
-      /*},
-        error: function (request, status, error) {
-          alert('FAIL');
-          alert(request.responseText);
-        }
-      });*/
       });
 });

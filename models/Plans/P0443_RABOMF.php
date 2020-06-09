@@ -83,8 +83,50 @@ class P0443_RABOMF  extends ActiveRecord
       'PRIF','PRGRF','PRPRF','SDAF','SDGRF','SDPRF','PARKF','PPORF','TRANF','MESGRF','MESSBF','OBORTF','OBRMESF'],'number',
        'min'=> 0, 'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
+       [['PRIO'], 'validatepriemOK'],
+       [['SDAO'], 'validatesdachaOK'],
+
+       [['PRIM'], 'validatepriemM'],
+       [['SDAM'], 'validatesdachaM'],
+
+       [['PRIF'], 'validatepriemF'],
+       [['SDAF'], 'validatesdachaF'],
 
     ];
+  }
+
+  public function validatepriemOK(){
+    if ($this->PRIO!=($this->PRGRO+$this->PRPRO)){
+      $this->addError('PRIO','Поле ПРИЕМ ВСЕГО ОКАТЫШЕВЕВОЗОВ не соответствует сумме полей');
+    }
+  }
+
+  public function validatepriemM(){
+    if ($this->PRIM!=($this->PRGRM+$this->PRPRM)){
+      $this->addError('PRIM','Поле ПРИЕМ ВСЕГО МИНЕРАЛОВОЗОВ не соответствует сумме полей');
+    }
+  }
+  public function validatepriemF(){
+    if ($this->PRIF!=($this->PRGRF+$this->PRPRF)){
+      $this->addError('PRIF','Поле ПРИЕМ ВСЕГО ФИТИНГОВЫХ не соответствует сумме полей');
+    }
+  }
+  public function validatesdachaOK(){
+    if ($this->SDAO!=($this->SDGRO+$this->SDPRO)){
+      $this->addError('SDAO','Поле СДАЧА ВСЕГО ОКАТЫШЕВЕВОЗОВ не соответствует сумме полей');
+    }
+  }
+
+  public function validatesdachaM(){
+    if ($this->SDAM!=($this->SDGRM+$this->SDPRM)){
+      $this->addError('SDAM','Поле СДАЧА ВСЕГО МИНЕРАЛОВОЗОВ не соответствует сумме полей');
+    }
+  }
+
+  public function validatesdachaF(){
+    if ($this->SDAF!=($this->SDGRF+$this->SDPRF)){
+      $this->addError('SDAF','Поле СДАЧА ВСЕГО ФИТИНГОВЫХ не соответствует сумме полей');
+    }
   }
     /**
      * @return string название таблицы, сопоставленной с этим ActiveRecord-классом.

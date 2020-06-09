@@ -10,13 +10,13 @@ $post = Yii::$app->request->post();
 if(!empty($post)): //Проверка параметров(ширина и длина) передаваемых модальному окну java-скриптом?>
 
 <div class="wraps">
-  <h4>ПЛАН CУТОЧНОЙ ПОГРУЗКИ ВАГОНОВ И ТОНН ПО СТАНЦИЯМ ОТДЕЛЕНИЯ M.0961</h4>
+  <h4>ПЛАН CУТОЧНОЙ ПОГРУЗКИ ВАГОНОВ И ТОНН ПО СТАНЦИЯМ ОТДЕЛЕНИЯ M.1195</h4>
   <div class="table100 ver2">
     <div id="get" class="table100-body js-pscroll">
       <table>
         <tr class="row100 head">
-          <th rowspan="2">Код станции</th>
           <th rowspan="2">НОД</th>
+          <th rowspan="2">Код станции</th>
           <th rowspan="2">Расчетная дата</th>
           <th colspan="6">Прием порожних</th>
           <th colspan="6">Сдача порожних</th>
@@ -39,8 +39,8 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
         </tr>
       <?php foreach ($model->data as $data): ?>
         <tr class="row100 body">
-          <td><?=$data['ESR'] ?></td>
           <td><?=$data['NOD'] ?></td>
+          <td><?=$data['ESR'] ?></td>
           <td><?=$data['DATE'] ?></td>
           <td><?=$data['PRKR'] ?></td>
           <td><?=$data['PRPL'] ?></td>
@@ -71,8 +71,8 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
     <div id="add" class="table100-body js-pscroll">
       <table>
         <tr class="row100 head">
-          <th rowspan="2">Код станции</th>
           <th rowspan="2">НОД</th>
+          <th rowspan="2">Код станции</th>
           <th rowspan="2">Расчетная дата</th>
           <th colspan="6">Прием порожних</th>
           <th colspan="6">Сдача порожних</th>
@@ -94,8 +94,34 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
           <th>Зерновозов</th>
         </tr>
         <tr class="row100 body">
-          <td><input type="text" name = "ESR" class="form-control"/></td>
-          <td><input type="text" name = "NOD" class="form-control"/></td>
+          <td>
+            <?= Html::dropDownList('NOD', null,[1=>'1',2=>'2',3=>'3',4=>'4',5=>'5', 6=>'6', 7=>'7'],
+                   ['id'=> 'NOD',
+                   'class' => 'form-control',
+                     'prompt'=>'',
+                    'onchange'=>'
+                    var nod = $("#NOD").val();
+                    document.getElementById("new").reset();
+                    $("#NOD").val(nod);
+                    $.post( "plan/station?id='.'"+$("option:selected", "#NOD").text(), function( data ) {
+                      $( "#ESR" ).html( data );
+                    });',
+              ]); ?>
+          </td>
+          <td>
+            <?= Html::dropDownList('ESR', null,[],
+            ['id'=>'ESR',
+            'class' => 'form-control',
+            'prompt'=>'',
+           'onchange'=>'
+           var nod = $("#NOD").val();
+           var esr = $("#ESR").val();
+           document.getElementById("new").reset();
+           $("#NOD").val(nod);
+           $("#ESR").val(esr);
+           ',
+            ])?>
+          </td>
           <td><input type="hidden" name = "DATE" />
           <?php date_default_timezone_set('Europe/Moscow'); echo(date('Y-m-d')); ?></td>
           <td><input type="text" name = "PRKR" class="form-control"/></td>

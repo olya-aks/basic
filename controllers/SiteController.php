@@ -12,8 +12,8 @@ use app\models\SignupForm;
 use app\models\User;
 use app\models\PlansForm;
 use app\models\ContactForm;
-use app\models\Plans\Maket;
-use yii\helpers\ArrayHelper;
+//use app\models\Plans\Maket;
+//use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
 {
@@ -67,12 +67,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
       if (!Yii::$app->user->isGuest) {
-        $id_o = Yii::$app->user->identity->id_otdela;
-
+        //$id_o = Yii::$app->user->identity->id_otdela;
         $model = new PlansForm();
-        $model->maket=ArrayHelper::map(Maket::find()->where(['id_otdela' => $id_o])->all(), 'maket','id_maket');
+        $model->getMakets();
+        //$model->maket=ArrayHelper::map(Maket::find()->where(['id_otdela' => $id_o])->all(), 'maket','id_maket');
 
-      return $this->render('index',['model' => $model]);
+        return $this->render('index',['model' => $model]);
       }
 
       $model = new LoginForm();

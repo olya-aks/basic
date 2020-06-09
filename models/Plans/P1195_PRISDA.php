@@ -45,8 +45,21 @@ class P1195_PRISDA  extends ActiveRecord
       [['ESR','NOD','PRKR','PRPL','PRPV','PRCS','PRRF','PRZR','SDKR','SDPL','SDPV','SDCS','SDRF','SDZR','PRVS','SDVS'],'number',
        'min'=> 0, 'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
-
+      [['PRVS'], 'validatePriem'],
+      [['SDVS'], 'validateSd'],
     ];
+  }
+
+  public function validatePriem(){
+    if ($this->PRVS != ($this->PRKR + $this->PRPL + $this->PRPV + $this->PRCS + $this->PRRF + $this->PRZR)) {
+      $this->addError('PRVS','Поле ПРИЕМ ВСЕГО не соответствует сумме полей');
+    }
+  }
+
+  public function validateSd(){
+    if ($this->SDVS!= ($this->SDKR + $this->SDPL + $this->SDPV + $this->SDCS + $this->SDRF + $this->SDZR)) {
+      $this->addError('SDVS','Поле СДАЧА ВСЕГО не соответствует сумме полей');
+    }
   }
     /**
      * @return string название таблицы, сопоставленной с этим ActiveRecord-классом.

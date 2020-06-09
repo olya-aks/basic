@@ -39,9 +39,15 @@ class P0203_RPGRU_  extends ActiveRecord
       [['NOD','KVVS','KVKR','KVPL','KVPV','KVCS','KVZR','KVRF','KVCG','KVPR','KVCM','KVMV'],'number', 'min'=> 0,
        'tooSmall' => 'Поле {attribute} не должно быть отрицательным'],
 
+       [['KVVS'], 'validatesum'],
 
 
     ];
+  }
+  public function validatesum(){
+    if ($this->KVVS!=($this->KVKR + $this->KVPL + $this->KVPV + $this->KVCS + $this->KVZR + $this->KVRF + $this->KVCG + $this->KVPR + $this->KVCM + $this->KVMV)){
+      $this->addError('KVVS','Поле ВСЕГО не соответствует сумме полей');
+    }
   }
     /**
      * @return string название таблицы, сопоставленной с этим ActiveRecord-классом.

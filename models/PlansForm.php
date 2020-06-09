@@ -4,7 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
-
+use app\models\Plans\Maket;
+use yii\helpers\ArrayHelper;
 /**
  * LoginForm is the model behind the login form.
  *
@@ -28,6 +29,11 @@ class PlansForm extends Model
         'date' => 'Дата:'
 
       ];
+    }
+
+    public function getMakets(){
+      $id_o = Yii::$app->user->identity->id_otdela;
+      $this->maket=ArrayHelper::map(Maket::find()->where(['id_otdela' => $id_o])->all(), 'maket','id_maket');
     }
 
 }

@@ -504,8 +504,17 @@ if(!empty($post)): //Проверка параметров(ширина и дл�
           <th>Тон</th>
         </tr>
         <tr class="row100 body">
-          <td><input type="text" name = "NOD" class="form-control"/></td>
-          <!--td><input type="text" name = "DATE" class="form-control"/></td-->
+          <td>
+            <?= Html::dropDownList('NOD', null,[1=>'1',2=>'2',3=>'3',4=>'4',5=>'5', 6=>'6', 7=>'7',16=>'16'],
+                   ['id'=> 'NOD',
+                   'class' => 'form-control',
+                     'prompt'=>'',
+                    'onchange'=>'
+                    var nod = $("#NOD").val();
+                    document.getElementById("new").reset();
+                    $("#NOD").val(nod);',
+              ]); ?>
+          </td>
           <td><input type="hidden" name = "DATE" /><?php date_default_timezone_set('Europe/Moscow');
             echo(date('Y-m-d')); ?></td>
           <td><input type="text" name = "VVS" class="form-control"/></td>
